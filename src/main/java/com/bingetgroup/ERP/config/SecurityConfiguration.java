@@ -4,6 +4,7 @@ package com.bingetgroup.ERP.config;
 
 import com.bingetgroup.ERP.utilities.JwtAuthenticationFilter;
 import com.bingetgroup.ERP.interfeces.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,8 +26,11 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
+    @Autowired
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Autowired
     private final UserService userService;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)

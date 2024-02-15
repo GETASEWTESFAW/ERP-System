@@ -4,6 +4,8 @@ import com.bingetgroup.ERP.dto.JwtAuthenticationResponse;
 import com.bingetgroup.ERP.dto.SignUpRequest;
 import com.bingetgroup.ERP.dto.SigninRequest;
 import com.bingetgroup.ERP.enums.Role;
+
+import com.bingetgroup.ERP.exception.UserNotFoundException;
 import com.bingetgroup.ERP.interfeces.AuthenticationService;
 import com.bingetgroup.ERP.interfeces.JwtService;
 import com.bingetgroup.ERP.models.User;
@@ -11,6 +13,7 @@ import com.bingetgroup.ERP.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +36,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signin(SigninRequest request) {
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+                .orElseThrow(() -> new UserNotFoundException("Invalid email or password"));
+
         var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }

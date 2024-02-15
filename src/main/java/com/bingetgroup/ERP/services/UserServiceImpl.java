@@ -1,5 +1,6 @@
 package com.bingetgroup.ERP.services;
 
+import com.bingetgroup.ERP.exception.UserNotFoundException;
 import com.bingetgroup.ERP.interfeces.UserService;
 import com.bingetgroup.ERP.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
             @Override
             public UserDetails loadUserByUsername(String username) {
                 return userRepository.findByEmail(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                        .orElseThrow(() -> new UserNotFoundException("User not found"));
             }
         };
     }

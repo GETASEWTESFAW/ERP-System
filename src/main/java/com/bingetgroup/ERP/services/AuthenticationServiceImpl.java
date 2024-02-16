@@ -5,6 +5,7 @@ import com.bingetgroup.ERP.dto.SignUpRequest;
 import com.bingetgroup.ERP.dto.SigninRequest;
 import com.bingetgroup.ERP.enums.Role;
 
+import com.bingetgroup.ERP.exception.EmailTakenByOther;
 import com.bingetgroup.ERP.exception.UserNotFoundException;
 import com.bingetgroup.ERP.interfeces.AuthenticationService;
 import com.bingetgroup.ERP.interfeces.JwtService;
@@ -17,6 +18,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -26,6 +29,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     @Override
     public JwtAuthenticationResponse signup(SignUpRequest request) {
+       if (userRepository.findByEmail(request.getEmail()).isPresent())
+           throw new EmailTakenByOther("Email is already registered.");
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER).build();

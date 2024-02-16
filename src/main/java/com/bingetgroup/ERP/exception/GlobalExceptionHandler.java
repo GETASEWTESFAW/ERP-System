@@ -19,5 +19,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(EmailTakenByOther.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<CustomErrorResponse> handleEmailTakenByOther(EmailTakenByOther ex, WebRequest request) {
+        CustomErrorResponse response = new CustomErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+    }
+
     // Add more exception handlers as needed
 }

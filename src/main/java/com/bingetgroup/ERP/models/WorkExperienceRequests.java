@@ -11,8 +11,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "employee_work_experience_request")
-public class workExperienceRequests {
+public class WorkExperienceRequests {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

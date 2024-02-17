@@ -3,7 +3,7 @@ package com.bingetgroup.ERP.enums;
 public enum RequestStatus {
     APPROVED("approved"),
     REJECTED("rejected");
-    private String status;
+    private final String status;
     RequestStatus(String status){
         this.status=status;
     }

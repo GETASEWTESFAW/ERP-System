@@ -2,9 +2,9 @@ package com.bingetgroup.ERP.enums;
 
 public enum AllowanceType {
     TRANSPORT("transport"),
-    MOBILECARD("mobileCard"),
+    MOBILE_CARD("mobileCard"),
     HOUSE("house");
-    private String allowance;
+    private final String allowance;
     AllowanceType(String allowance){
         this.allowance=allowance;
     }

@@ -5,7 +5,7 @@ public enum EmploymentStatus {
     TERMINATE("terminate"),
     FIRED("FIRED"),
     ACTIVE("ACTIVE");
-    private String employmentStatus;
+    private final String employmentStatus;
     EmploymentStatus(String status){
         this.employmentStatus=status;
     }

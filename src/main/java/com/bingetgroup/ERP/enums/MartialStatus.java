@@ -6,7 +6,7 @@ public enum MartialStatus {
     DIVORCED("divorced"),
     WIDOWED("widowed"),
     OTHER("other");
-    private String martialStatus;
+    private final String martialStatus;
     MartialStatus(String status){
         this.martialStatus=status;
     }

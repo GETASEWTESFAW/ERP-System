@@ -5,7 +5,7 @@ public enum AttendanceValue {
     PRESENT("present"),
     EXCUSE("excuse"),
     LEAVE("leave");
-    private String attendanceValue;
+    private final String attendanceValue;
     AttendanceValue(String value){
          this.attendanceValue=value;
     }

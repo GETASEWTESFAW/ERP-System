@@ -1,7 +1,7 @@
 package com.bingetgroup.ERP.enums;
 
 public enum LeaveType {
-    ANNUALLEAVE("annalLive"),
+    ANNUAL_LEAVE("annalLive"),
     LEAVE_WITHOUT_PAY("leaveWithoutPay"),
     MARRIAGE_LEAVE("marriageLeave"),
     MOURNING_LEAVE("mourningLeave"),

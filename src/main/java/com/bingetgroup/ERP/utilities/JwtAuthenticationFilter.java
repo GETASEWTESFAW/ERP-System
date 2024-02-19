@@ -26,9 +26,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    @Autowired
     private final JwtService jwtService;
-    @Autowired
     private final UserService userService;
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,

@@ -1,30 +1,35 @@
 package com.bingetgroup.ERP.models;
 
-import com.bingetgroup.ERP.enums.RequestStatus;
+import com.bingetgroup.ERP.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "employee_leave_Request")
-public class LeaveRequests {
+public class LeaveRequests extends Request{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double totalLeaveRequested;
     private double totalLeaveApproved;
-    private Date requestedFrom;
-    private Date approvedTo;
-    private Date reportDate;
-    private Date requestedDate;
-    private Date approvedDate;
+    private LocalDate requestedFrom;
+    private LocalDate requestedTo;
+    private LocalDate reportDate;
+    private LocalDate requestedDate;
+    private LocalDate approvedDate;
     private String remark;
-    private RequestStatus status;
-    @ManyToMany(mappedBy = "id")
-    private Employees employee;
+    private Status status;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "requested_by")
+    private Employees requestedBy;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "approved_by")
+    private Employees approvedBy;
 }

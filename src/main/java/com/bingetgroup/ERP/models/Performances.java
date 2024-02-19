@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -24,8 +25,10 @@ public class Performances {
     private double attendance;
     private double resourceEfficiencyAndProtection;
     private double initiativeAndCreativity;
-    private Date performanceDateFrom;
-    private Date performanceDateTo;
+    private LocalDate performanceDateFrom;
+    private LocalDate performanceDateTo;
     private String remark;
-    private Employees employees;
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employees employee;
 }

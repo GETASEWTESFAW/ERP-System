@@ -1,10 +1,12 @@
 package com.bingetgroup.ERP.models;
 
+import com.bingetgroup.ERP.enums.LeaveType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,11 +18,13 @@ public class Leaves {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Leaves leaveType;
+    @Enumerated(EnumType.STRING)
+    private LeaveType leaveType;
     private double totalLeave;
     private double leaveUsed;
     private double leaveBalance;
-    @ManyToMany(mappedBy = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
     private Employees employee;
-    private Date year;
+    private LocalDate year;
 }

@@ -1,10 +1,10 @@
 package com.bingetgroup.ERP.enums;
 
-public enum RequestStatus {
+public enum Status {
     APPROVED("approved"),
     REJECTED("rejected");
     private final String status;
-    RequestStatus(String status){
+    Status(String status){
         this.status=status;
     }
 

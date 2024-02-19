@@ -27,9 +27,9 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 public class SecurityConfiguration {
     @Autowired
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private  JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
-    private final UserService userService;
+    private  UserService userService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

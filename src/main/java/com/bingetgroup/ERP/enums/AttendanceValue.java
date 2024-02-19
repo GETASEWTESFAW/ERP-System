@@ -3,7 +3,7 @@ package com.bingetgroup.ERP.enums;
 public enum AttendanceValue {
     ABSENT("absent"),
     PRESENT("present"),
-    EXCUSE("excuse"),
+    Late("excuse"),
     LEAVE("leave");
     private final String attendanceValue;
     AttendanceValue(String value){

@@ -22,4 +22,7 @@ public class IncomeTaxRates implements TaxType {
     private double endStart;
     private double rate;
     private double deduction;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 }

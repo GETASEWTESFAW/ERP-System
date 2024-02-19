@@ -18,4 +18,7 @@ public class PensionTax implements TaxType {
     private String taxName;
     private double rate;
     private boolean isFromEmployee;
+    @OneToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 }

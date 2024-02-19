@@ -32,4 +32,7 @@ public class Allowances {
     @ManyToMany(mappedBy = "allowances")
     @JsonIgnore
     private List<Payroll> payrolls;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 }

@@ -24,4 +24,7 @@ public class Positions {
     @OneToMany(mappedBy = "position")
     @JsonIgnore
     private List<Employees> employees;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 }

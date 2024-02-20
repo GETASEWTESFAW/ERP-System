@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -26,7 +25,7 @@ public class Allowances {
     private LocalDate date;
     private boolean isTaxable;
     private double taxableFrom;
-    @OneToMany(mappedBy = "allowance")
+    @ManyToMany(mappedBy = "allowance")
     @JsonIgnore
     private List<Positions> positions;
     @ManyToMany(mappedBy = "allowances")
@@ -34,5 +33,5 @@ public class Allowances {
     private List<Payroll> payrolls;
     @ManyToOne
     @JoinColumn(name = "company_id")
-    private Company company;
+    private Companies company;
 }

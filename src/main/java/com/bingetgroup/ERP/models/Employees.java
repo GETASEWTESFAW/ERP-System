@@ -10,7 +10,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,13 +29,16 @@ public class Employees {
     @NotBlank(message = "email is mandatory, please fill the correct email.")
     @Email
     private String email;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+    @Column(name = "mobile_number",unique = true)
     private String mobileNumber;
     private String city;
     private String subcity;
     private String wereda;
     private String photo;
     private LocalDate dateOfHire;
+    @Column(name = "bank_account",unique = true)
     private String bankAccount;
     @Enumerated(EnumType.STRING)
     private MartialStatus martialStatus;
@@ -46,9 +48,9 @@ public class Employees {
     @JoinColumn(name = "position_id")
     private Positions position;
     @OneToMany(mappedBy = "employee")
-    private List<EmployeeWorkExperience> employeeWorkExperiences;
+    private List<EmployeeWorkExperiences> employeeWorkExperiences;
     @OneToMany(mappedBy = "employee")
-    private List<EducationBackground> educationBackgrounds;
+    private List<EducationBackgrounds> educationBackgrounds;
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private List<Attendances> attendances;
@@ -80,5 +82,5 @@ public class Employees {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    private Company company;
+    private Companies company;
 }

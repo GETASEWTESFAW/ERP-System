@@ -20,5 +20,5 @@ public class PensionTax implements TaxType {
     private boolean isFromEmployee;
     @OneToOne
     @JoinColumn(name = "company_id")
-    private Company company;
+    private Companies company;
 }

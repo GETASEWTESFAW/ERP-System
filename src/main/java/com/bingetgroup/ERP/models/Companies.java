@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "company")
-public class Company {
+public class Companies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

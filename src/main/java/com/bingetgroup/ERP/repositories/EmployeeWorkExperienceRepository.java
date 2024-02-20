@@ -1,7 +1,11 @@
 package com.bingetgroup.ERP.repositories;
 
-import com.bingetgroup.ERP.models.EmployeeWorkExperience;
+import com.bingetgroup.ERP.models.EmployeeWorkExperiences;
+import com.bingetgroup.ERP.models.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EmployeeWorkExperienceRepository extends JpaRepository<EmployeeWorkExperience,Long> {
+import java.util.Optional;
+
+public interface EmployeeWorkExperienceRepository extends JpaRepository<EmployeeWorkExperiences,Long> {
+   Optional<EmployeeWorkExperiences> findByEmployee(Employees employee);
 }

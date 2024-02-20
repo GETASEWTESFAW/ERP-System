@@ -18,13 +18,14 @@ public class Positions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String positionName;
-    @ManyToOne
-    @JoinColumn(name = "allowance_id")
-    private Allowances allowance;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "position_id"),
+               inverseJoinColumns = @JoinColumn(name = "allowance_id") )
+    private List<Allowances> allowance;
     @OneToMany(mappedBy = "position")
     @JsonIgnore
     private List<Employees> employees;
     @ManyToOne
     @JoinColumn(name = "company_id")
-    private Company company;
+    private Companies company;
 }
